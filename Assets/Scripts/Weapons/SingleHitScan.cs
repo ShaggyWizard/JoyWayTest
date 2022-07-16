@@ -9,11 +9,10 @@ public class SingleHitScan
     public OnHitDelegate OnHit;
 
 
-    public void Shoot(Transform aimer)
+    public void Shoot(Transform aimer, float distance = float.MaxValue)
     {
-        if (Physics.Raycast(aimer.position, aimer.forward, out RaycastHit hitInfo))
+        if (Physics.Raycast(aimer.position, aimer.forward, out RaycastHit hitInfo, distance))
         {
-            Debug.Log($"Hit {hitInfo.transform.name}");
             OnHit(hitInfo);
         }
     }

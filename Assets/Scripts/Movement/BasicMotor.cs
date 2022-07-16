@@ -1,12 +1,14 @@
 using UnityEngine;
 
-public class BasicMotor : MonoBehaviour
+public class BasicMotor : MonoBehaviour, IMotor
 {
     private IMover _mover;
     private IRotator _rotator;
     private IMoveSignal _moveInput;
     private IRotateSignal _rotateInput;
 
+    public void On() { enabled = true; }
+    public void Off() { enabled = false; }
 
     private void Awake()
     {

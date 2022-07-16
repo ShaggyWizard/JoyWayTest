@@ -17,7 +17,7 @@ public class LateMotor : MonoBehaviour
     }
     private void LateUpdate()
     {
-        _mover.Move(_moveInput.MoveVector);
-        _rotator.Rotate(_rotateInput.Rotation);
+        if (_moveInput != null) { _mover?.Move(_moveInput.MoveVector); }
+        if (_rotateInput != null) { _rotator?.Rotate(_rotateInput.Rotation); }
     }
 }

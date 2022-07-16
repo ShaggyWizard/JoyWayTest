@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitScanWeaponBehavior : MonoBehaviour
+public class HitScanWeaponBehavior : MonoBehaviour, IUsable, IAimable
 {
     [SerializeField] private Transform _aimer;
     [SerializeField] private float _damage;
@@ -16,23 +16,18 @@ public class HitScanWeaponBehavior : MonoBehaviour
 
         if (_aimer == null) { _aimer = transform; }
     }
-    private void Update()
-    {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Shoot();
-        }
-    }
 
 
     public void SetAimer(Transform newAimer)
     {
         _aimer = newAimer;
     }
-    public void Shoot()
+    public void Use()
     {
         _hitScan.Shoot(_aimer);
     }
+
+
     private void TryDealDamage(RaycastHit hitInfo)
     {
         Debug.Log($"Trying to damage {hitInfo.transform.name}");

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AlignedMover : MonoBehaviour, IMover
+public class PositionDisplaceAligned : MonoBehaviour, IMover
 {
     [SerializeField] private Transform _targetTransform;
     [SerializeField, Range(0f, 100f)] float _moveSpeed;

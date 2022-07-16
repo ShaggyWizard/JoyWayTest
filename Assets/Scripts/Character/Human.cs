@@ -1,14 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour, IHealth
+public class Human : MonoBehaviour, IHealth
 {
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _health;
 
-    public event Action OnDeath;
 
     public float Health
     {
@@ -17,27 +15,14 @@ public class Character : MonoBehaviour, IHealth
     }
 
 
+    public void ModifyHealth(float modifyer)
+    {
+        Debug.Log($"{Health} {modifyer}");
+        Health += modifyer;
+    }
+
     private void OnEnable()
     {
         Health = _maxHealth;
-        OnDeath += Death;
-    }
-    private void OnDisable()
-    {
-        OnDeath -= Death;
-    }
-
-
-    public void ModifyHealth(float modifyer)
-    {
-        Health += modifyer;
-
-        if (Health == 0) { OnDeath.Invoke(); }
-    }
-
-
-    private void Death()
-    {
-        Destroy(gameObject);
     }
 }

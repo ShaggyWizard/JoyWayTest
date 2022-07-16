@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterRotator : MonoBehaviour, IRotator
+public class RotationCharacter : MonoBehaviour, IRotator
 {
     [Header("Options")]
     [SerializeField, Range(0f, 1000f)] private float _turnSpeed = 10f;
