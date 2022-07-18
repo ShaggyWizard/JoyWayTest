@@ -21,6 +21,10 @@ public class Timer
     }
 
 
+    public void SetTime(float time)
+    {
+        RemainingTime = time;
+    }
     public void Update(float deltaTime)
     {
         if (_remainingTime == 0f) { return; }
@@ -29,6 +33,8 @@ public class Timer
 
         CheckIfDone();
     }
+
+
     private void CheckIfDone()
     {
         if (_remainingTime > 0f) { return; }

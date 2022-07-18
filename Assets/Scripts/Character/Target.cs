@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Human : MonoBehaviour, IHealth
+public class Target : MonoBehaviour, IHealth
 {
-    [SerializeField] private float _maxHealth;
     [SerializeField] private float _health;
 
 
@@ -15,14 +13,11 @@ public class Human : MonoBehaviour, IHealth
         private set { _health = value > 0f ? value : 0f; }
     }
 
+
     public void ModifyHealth(float modifyer)
     {
-        Debug.Log($"{Health} {modifyer}");
+        if (modifyer < 0)
+            Debug.Log($"{name} took {-modifyer} damage");
         Health += modifyer;
-    }
-
-    private void OnEnable()
-    {
-        Health = _maxHealth;
     }
 }

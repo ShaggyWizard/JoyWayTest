@@ -1,14 +1,15 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour, IHealth
+public class Character : MonoBehaviour, IHealth, IRespawn, IDeath
 {
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _health;
 
+
     public event Action OnDeath;
+    public event Action OnRespawn;
+
 
     public float Health
     {
@@ -17,27 +18,25 @@ public class Character : MonoBehaviour, IHealth
     }
 
 
-    private void OnEnable()
-    {
-        Health = _maxHealth;
-        OnDeath += Death;
-    }
-    private void OnDisable()
-    {
-        OnDeath -= Death;
-    }
-
-
     public void ModifyHealth(float modifyer)
     {
         Health += modifyer;
 
-        if (Health == 0) { OnDeath.Invoke(); }
+        if (Health == 0) { Die(); }
+    }
+    public void Respawn()
+    {
+        OnRespawn.Invoke();
+    }
+    public void Die()
+    {
+        OnDeath.Invoke();
+        Destroy(gameObject);
     }
 
 
-    private void Death()
+    private void OnEnable()
     {
-        Destroy(gameObject);
+        Health = _maxHealth;
     }
 }

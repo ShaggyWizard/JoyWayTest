@@ -20,6 +20,10 @@ public class EffectOverTime
     }
 
 
+    public void SetTime(float time)
+    {
+        _timer.SetTime(time);
+    }
     public void Update(float deltaTime)
     {
         _timer.Update(deltaTime);

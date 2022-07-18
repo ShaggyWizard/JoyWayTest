@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class GrabableItem : MonoBehaviour, IGrabable
 {
-    [SerializeField] Vector3 offset;
-    [SerializeField] Vector3 rotation;
+    [SerializeField] private Vector3 _offset;
+    [SerializeField] private Vector3 _rotation;
+    [SerializeField] private Collider[] _allColliders;
 
     public event Action OnPickUpEvent;
     public event Action OnDropEvent;
@@ -22,6 +23,7 @@ public class GrabableItem : MonoBehaviour, IGrabable
         _motor = GetComponent<IMotor>();
         _rigidbody = GetComponent<Rigidbody>();
         _originalParent = transform.parent;
+        _allColliders = GetComponentsInChildren<Collider>();
     }
 
 
@@ -29,6 +31,10 @@ public class GrabableItem : MonoBehaviour, IGrabable
     {
         _motor?.Off();
         OnPickUpEvent?.Invoke();
+        foreach (var collider in _allColliders)
+        {
+            collider.enabled = false;
+        }
         if (_rigidbody != null)
         {
             _rigidbody.isKinematic = true;
@@ -39,6 +45,10 @@ public class GrabableItem : MonoBehaviour, IGrabable
     {
         _motor?.On();
         OnDropEvent?.Invoke();
+        foreach (var collider in _allColliders)
+        {
+            collider.enabled = true;
+        }
         if (_rigidbody != null)
         {
             _rigidbody.isKinematic = false;
@@ -50,7 +60,7 @@ public class GrabableItem : MonoBehaviour, IGrabable
     public void SetPosition(Transform slot)
     {
         transform.parent = slot;
-        transform.localPosition = offset;
-        transform.localEulerAngles = rotation;
+        transform.localPosition = _offset;
+        transform.localEulerAngles = _rotation;
     }
 }

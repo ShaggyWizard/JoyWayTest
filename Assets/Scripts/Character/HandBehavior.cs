@@ -15,6 +15,9 @@ public class HandBehavior : MonoBehaviour, IUsable, IAimable
     private SingleHitScan _hitScan;
 
 
+    public event Action OnUse;
+
+
     private void Awake()
     {
         _hitScan = new SingleHitScan();
@@ -27,6 +30,7 @@ public class HandBehavior : MonoBehaviour, IUsable, IAimable
     public void Use()
     {
         _itemUsable?.Use();
+        OnUse?.Invoke();
     }
     public void GrabOrDrop()
     {

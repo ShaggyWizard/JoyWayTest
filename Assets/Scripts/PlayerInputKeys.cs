@@ -13,7 +13,7 @@ public class PlayerInputKeys : MonoBehaviour
         {
             if (Input.GetKeyDown(keyAction.Key))
             {
-                keyAction.Action.Invoke();
+                keyAction.Action?.Invoke();
             }
         }
     }
