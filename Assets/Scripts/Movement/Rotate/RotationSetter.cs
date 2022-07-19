@@ -3,6 +3,7 @@ using UnityEngine;
 public class RotationSetter : MonoBehaviour, IRotator
 {
     [SerializeField] private Transform _targetTransform;
+    [SerializeField] private Vector3 _offset;
 
 
     private void OnValidate()
@@ -13,6 +14,6 @@ public class RotationSetter : MonoBehaviour, IRotator
 
     public void Rotate(Vector3 rotation)
     {
-        transform.eulerAngles = rotation;
+        transform.eulerAngles = rotation + _offset;
     }
 }

@@ -7,9 +7,9 @@ public class DamageEffect : MonoBehaviour, IEffector
 
     public void Effect(RaycastHit hitInfo)
     {
-        if (hitInfo.transform.TryGetComponent(out IHealth target))
+        if (hitInfo.transform.TryGetComponent(out IDamageable target))
         {
-            target.ModifyHealth(-_damage);
+            target.TakeDamage(_damage);
         }
     }
 }

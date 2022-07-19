@@ -5,6 +5,7 @@ public class Timer
     public event Action OnTimerEnd;
 
 
+    private float _duration;
     private float _remainingTime;
 
 
@@ -13,11 +14,15 @@ public class Timer
         get { return _remainingTime; }
         private set { _remainingTime = value > 0f ? value : 0f; }
     }
-
+    public float Progress
+    {
+        get { return 1f - (_remainingTime / _duration); }
+    }
 
     public Timer(float time)
     {
         RemainingTime = time;
+        _duration = RemainingTime;
     }
 
 

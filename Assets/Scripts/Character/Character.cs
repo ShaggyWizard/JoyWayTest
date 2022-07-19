@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Character : MonoBehaviour, IHealth, IRespawn, IDeath
+public class Character : MonoBehaviour, IHealth, IRespawn, IDeath, IDamageable
 {
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _health;
@@ -9,7 +9,7 @@ public class Character : MonoBehaviour, IHealth, IRespawn, IDeath
 
     public event Action OnDeath;
     public event Action OnRespawn;
-
+    public event OnDamageDeleagate OnDamage;
 
     public float Health
     {
@@ -24,13 +24,18 @@ public class Character : MonoBehaviour, IHealth, IRespawn, IDeath
 
         if (Health == 0) { Die(); }
     }
+    public void TakeDamage(float damage)
+    {
+        ModifyHealth(-damage);
+        OnDamage?.Invoke(damage);
+    }
     public void Respawn()
     {
-        OnRespawn.Invoke();
+        OnRespawn?.Invoke();
     }
     public void Die()
     {
-        OnDeath.Invoke();
+        OnDeath?.Invoke();
         Destroy(gameObject);
     }
 

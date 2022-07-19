@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetDummy : MonoBehaviour, IHealth, IRespawn, IDeath
+public class TargetDummy : MonoBehaviour, IHealth, IRespawn, IDeath, IDamageable
 {
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _health;
@@ -14,6 +14,7 @@ public class TargetDummy : MonoBehaviour, IHealth, IRespawn, IDeath
 
     public event Action OnRespawn;
     public event Action OnDeath;
+    public event OnDamageDeleagate OnDamage;
 
 
     public float Health
@@ -30,6 +31,11 @@ public class TargetDummy : MonoBehaviour, IHealth, IRespawn, IDeath
     }
 
 
+    public void TakeDamage(float damage)
+    {
+        ModifyHealth(-damage);
+        OnDamage?.Invoke(damage);
+    }
     public void ModifyHealth(float modifyer)
     {
         Health += modifyer;

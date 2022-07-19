@@ -10,7 +10,7 @@ public class DamageOverTimeStatusBehavior : MonoBehaviour
 
     private LinkedList<EffectOverTime> _effects;
     private int _expiredCount;
-    private IHealth _target;
+    private IDamageable _target;
     private float _damage;
 
 
@@ -69,7 +69,7 @@ public class DamageOverTimeStatusBehavior : MonoBehaviour
 
     private void DealDamage()
     {
-        _target.ModifyHealth(-_damage);
+        _target.TakeDamage(_damage);
     }
     private void RemoveStack()
     {

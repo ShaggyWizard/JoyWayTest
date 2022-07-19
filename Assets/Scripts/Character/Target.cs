@@ -1,23 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Target : MonoBehaviour, IHealth
+public class Target : MonoBehaviour, IDamageable
 {
-    [SerializeField] private float _health;
+    public event OnDamageDeleagate OnDamage;
 
-
-    public float Health
+    public void TakeDamage(float damage)
     {
-        get { return _health; }
-        private set { _health = value > 0f ? value : 0f; }
-    }
-
-
-    public void ModifyHealth(float modifyer)
-    {
-        if (modifyer < 0)
-            Debug.Log($"{name} took {-modifyer} damage");
-        Health += modifyer;
+        OnDamage?.Invoke(damage);
     }
 }
