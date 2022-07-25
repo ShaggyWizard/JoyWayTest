@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RotationFollower : MonoBehaviour, IRotateSignal
+public class RotationFollower : MonoBehaviour, IRotateInput
 {
     [SerializeField] private Transform _target;
 

@@ -4,16 +4,16 @@ public class LateMotor : MonoBehaviour
 {
     private IMover _mover;
     private IRotator _rotator;
-    private IMoveSignal _moveInput;
-    private IRotateSignal _rotateInput;
+    private IMoveInput _moveInput;
+    private IRotateInput _rotateInput;
 
 
     private void Awake()
     {
         _mover = GetComponent<IMover>();
         _rotator = GetComponent<IRotator>();
-        _moveInput = GetComponent<IMoveSignal>();
-        _rotateInput = GetComponent<IRotateSignal>();
+        _moveInput = GetComponent<IMoveInput>();
+        _rotateInput = GetComponent<IRotateInput>();
     }
     private void LateUpdate()
     {

@@ -2,11 +2,14 @@ using System;
 
 public class Timer
 {
+    public event Action OnTick;
     public event Action OnTimerEnd;
 
 
     private float _duration;
+    private float _tickRate;
     private float _remainingTime;
+    private float _tickTimer;
 
 
     public float RemainingTime
@@ -14,36 +17,54 @@ public class Timer
         get { return _remainingTime; }
         private set { _remainingTime = value > 0f ? value : 0f; }
     }
-    public float Progress
+    public float Progress => 1f - (_remainingTime / _duration);
+    public bool Finished => _remainingTime <= 0;
+
+
+    public Timer() { }
+    public Timer(float time, float tickRate = 0f)
     {
-        get { return 1f - (_remainingTime / _duration); }
+        Set(time);
+        _tickRate = tickRate;
+        _tickTimer = tickRate;
     }
 
-    public Timer(float time)
+
+    public void Set(float time)
     {
         RemainingTime = time;
         _duration = RemainingTime;
     }
-
-
-    public void SetTime(float time)
+    public bool TryUpdate(float deltaTime)
     {
-        RemainingTime = time;
-    }
-    public void Update(float deltaTime)
-    {
-        if (_remainingTime == 0f) { return; }
+        if (Finished) { return false; }
 
         RemainingTime -= deltaTime;
 
-        CheckIfDone();
+        if (_tickRate > 0f)
+        {
+            _tickTimer -= deltaTime;
+            CheckForEffect();
+        }
+
+        if (Finished)
+        {
+            End();
+        }
+        return true;
+    }
+    public void End()
+    {
+        OnTimerEnd?.Invoke();
     }
 
 
-    private void CheckIfDone()
+    private void CheckForEffect()
     {
-        if (_remainingTime > 0f) { return; }
+        if (_tickTimer > 0f) { return; }
 
-        OnTimerEnd?.Invoke();
+        OnTick?.Invoke();
+
+        _tickTimer += _tickRate;
     }
 }

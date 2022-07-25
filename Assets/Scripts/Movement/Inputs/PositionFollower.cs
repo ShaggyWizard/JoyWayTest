@@ -1,5 +1,5 @@
 using UnityEngine;
-public class PositionFollower : MonoBehaviour, IMoveSignal
+public class PositionFollower : MonoBehaviour, IMoveInput
 {
     [SerializeField] private Transform _target;
 

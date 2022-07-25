@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CloneRotation : MonoBehaviour, IRotateSignal
+public class CloneRotation : MonoBehaviour, IRotateInput
 {
     [SerializeField] private Transform _target;
 

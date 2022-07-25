@@ -1,5 +1,7 @@
 using UnityEngine;
-public class ClonePosition : MonoBehaviour, IMoveSignal
+
+
+public class ClonePosition : MonoBehaviour, IMoveInput
 {
     [SerializeField] private Transform _target;
 

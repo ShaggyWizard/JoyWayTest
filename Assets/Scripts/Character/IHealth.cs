@@ -1,7 +1,9 @@
+using System;
+
 public interface IHealth
 {
     public float Health { get; }
 
 
-    public void ModifyHealth(float modifyer);
+    public event Action OnModifyHealth;
 }

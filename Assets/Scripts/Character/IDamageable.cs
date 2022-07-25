@@ -1,6 +1,6 @@
 ﻿public delegate void OnDamageDeleagate(float damage);
 
-internal interface IDamageable
+public interface IDamageable
 {
     public event OnDamageDeleagate OnDamage;
 

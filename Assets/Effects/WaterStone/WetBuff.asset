@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1366d83af0470e44890b3d7e2c53f93, type: 3}
+  m_Name: WetBuff
+  m_EditorClassIdentifier: 
+  guid: 158bbafb2ad2f8d4e8ad1552edd0f724
+  _restricted:
+  - {fileID: 11400000, guid: 6d04c4362d202cb45a26f1037e841a75, type: 2}
+  _duration: 10
+  _maxStacks: 3
+  _tickRate: 0
+  _effectsOnStart:
+  - {fileID: 11400000, guid: 88fe6ec5a3131554bad61f2072ee707f, type: 2}
+  - {fileID: 11400000, guid: a240becfa8d4e444e89e087387354a30, type: 2}
+  _effectsOnOnTick: []
+  _effectsOnEnd: []
