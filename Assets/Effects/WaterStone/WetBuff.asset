@@ -16,7 +16,7 @@ MonoBehaviour:
   _restricted:
   - {fileID: 11400000, guid: 6d04c4362d202cb45a26f1037e841a75, type: 2}
   _duration: 10
-  _maxStacks: 3
+  _maxStacks: 10
   _tickRate: 0
   _effectsOnStart:
   - {fileID: 11400000, guid: 88fe6ec5a3131554bad61f2072ee707f, type: 2}
